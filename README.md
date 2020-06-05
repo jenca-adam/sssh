@@ -1,3 +1,3 @@
 # sssh
-Sioux SlideSHow for python
-this is simple sideshow program for python.
+Sioux SlideSHow for python                                              
+This is simple sideshow program for python.
