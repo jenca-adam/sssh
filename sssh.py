@@ -5,7 +5,10 @@ class Slide:
         self.posys=[]
         self.posxs=[]
         self.fonts=[]
-        self.canv=tkinter.Canvas()
+        self.images=[]
+        self.imageposxs=[]
+        self.imageposys=[]
+        self.canv=tkinter.Canvas(width=10000,height=10000)
         self.canv.pack()
         self.textindex=5
         
@@ -19,13 +22,22 @@ class Slide:
     def add_title(self,title,font='CourierNew 30',color='black'):
         self.title=Title(text=title,font=font,color=color)
         self.titargs=self.title.create()
+    def add_image(self,posx,posy,image):
+        img=tkinter.PhotoImage(file=image)
+        self.images.append(img)
+        self.imageposxs.append(posx)
+        self.imageposys.append(posy)
+
     def show(self):
         for i in self.text:
             self.canv.create_text(self.posxs[self.text.index(i)],self.posys[self.text.index(i)],text="● "+i,font=self.fonts[self.text.index(i)])
         self.canv.create_text(self.titargs[0],self.titargs[1],text=self.titargs[2],font=self.titargs[3],fill=self.titargs[4])
+        for i in self.images:    
+            self.canv.create_image(self.imageposxs[self.images.index(i)],self.imageposys[self.images.index(i)],image=i,anchor='nw')
         self.canv.pack()
 
         tkinter.mainloop()
+
 class Title:
     def __init__(self,text,posxtit=185,posytit=30,font='Times 20',color='black'):
         self.text=text
