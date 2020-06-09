@@ -15,7 +15,7 @@ class Slide:
     def add_text(self,txt,font='Times 20' ):
         self.text.append(txt)
         self.posys.append(self.textindex*12)
-        self.posxs.append(50+len(txt)*(2.825))
+        self.posxs.append(850+len(txt)*(2.825))
         self.fonts.append(font)
         self.textindex+=1
         
@@ -39,7 +39,7 @@ class Slide:
         tkinter.mainloop()
 
 class Title:
-    def __init__(self,text,posxtit=185,posytit=30,font='Times 20',color='black'):
+    def __init__(self,text,posxtit=960,posytit=30,font='Times 30',color='black'):
         self.text=text
         self.posxtit=posxtit
         self.posytit=posytit
