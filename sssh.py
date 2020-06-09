@@ -37,6 +37,8 @@ class Slide:
         self.canv.pack()
 
         tkinter.mainloop()
+    def canvas(self):
+        return self.canv
 
 class Title:
     def __init__(self,text,posxtit=960,posytit=30,font='Times 30',color='black'):
@@ -48,4 +50,16 @@ class Title:
     def create(self):
         return([self.posxtit,self.posytit,self.text,self.font,self.color])
 
-    
+class SlideShow:
+    def __init__(self,*piano):
+        self.piano=list(piano)
+        self.slideindex=-1
+    def nex(self,foo):
+        self.slideindex+=1
+        self.piano[self.slideindex].show()
+            
+    def play(self):
+        for i in self.piano:
+            i.canvas().bind('<Button-1>',self.nex)
+        self.piano[0].show()
+
