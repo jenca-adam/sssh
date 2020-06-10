@@ -11,5 +11,5 @@ s.add_image(1000,110,'/home/adam/Downloads/dynboard.png')
 a=sssh.Slide()
 a.add_title('shshhshsh')
 g=sssh.SlideShow(s,a)
-g.play()
+g.play1()
 

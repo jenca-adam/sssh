@@ -1,4 +1,4 @@
-import argparse,tkinter
+import argparse,tkinter,sys,time
 class Slide:
     def __init__(self):
         self.text=[]
@@ -29,11 +29,13 @@ class Slide:
         self.imageposys.append(posy)
 
     def show(self):
+        self.canv.delete('all')
         for i in self.text:
             self.canv.create_text(self.posxs[self.text.index(i)],self.posys[self.text.index(i)],text="● "+i,font=self.fonts[self.text.index(i)])
         self.canv.create_text(self.titargs[0],self.titargs[1],text=self.titargs[2],font=self.titargs[3],fill=self.titargs[4])
         for i in self.images:    
             self.canv.create_image(self.imageposxs[self.images.index(i)],self.imageposys[self.images.index(i)],image=i,anchor='nw')
+        self.canv.update()
         self.canv.pack()
 
         tkinter.mainloop()
@@ -56,10 +58,19 @@ class SlideShow:
         self.slideindex=-1
     def nex(self,foo):
         self.slideindex+=1
-        self.piano[self.slideindex].show()
-            
+        try:
+            self.piano[self.slideindex].show()
+        except IndexError:
+            sys.exit()
     def play(self):
+
         for i in self.piano:
-            i.canvas().bind('<Button-1>',self.nex)
+            global canvas
+            canvas=i.canvas()
+            canvas.bind('<Button-1>',self.nex)
         self.piano[0].show()
+    def play1(self):
+        for i in self.piano:
+            i.show()
+            time.sleep(1)
 
