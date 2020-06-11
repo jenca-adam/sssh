@@ -9,7 +9,8 @@ s.add_title(title='bla',color='orange',font='Castellar 50')
 s.add_image(1000,110,'/home/adam/Downloads/dynboard.png')
 
 a=sssh.Slide()
-a.add_title('shshhshsh')
+a.add_title('shshhshsh',font='Aparajita 87')
+a.add_image(1000,30,'/home/adam/Downloads/repository-open-graph-template.png' ) 
 g=sssh.SlideShow(s,a)
-g.play1()
+g.play()
 

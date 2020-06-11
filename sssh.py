@@ -1,4 +1,6 @@
 import argparse,tkinter,sys,time
+canv=tkinter.Canvas(width=5000,height=5000)
+canv.pack()
 class Slide:
     def __init__(self):
         self.text=[]
@@ -8,9 +10,8 @@ class Slide:
         self.images=[]
         self.imageposxs=[]
         self.imageposys=[]
-        self.canv=tkinter.Canvas(width=10000,height=10000)
-        self.canv.pack()
         self.textindex=5
+        self.canv=canv
         
     def add_text(self,txt,font='Times 20' ):
         self.text.append(txt)
@@ -36,12 +37,8 @@ class Slide:
         for i in self.images:    
             self.canv.create_image(self.imageposxs[self.images.index(i)],self.imageposys[self.images.index(i)],image=i,anchor='nw')
         self.canv.update()
-        self.canv.pack()
-
-        tkinter.mainloop()
     def canvas(self):
         return self.canv
-
 class Title:
     def __init__(self,text,posxtit=960,posytit=30,font='Times 30',color='black'):
         self.text=text
@@ -65,12 +62,11 @@ class SlideShow:
     def play(self):
 
         for i in self.piano:
-            global canvas
-            canvas=i.canvas()
-            canvas.bind('<Button-1>',self.nex)
+            canv.bind('<Button-1>',self.nex)
         self.piano[0].show()
+        tkinter.mainloop()
     def play1(self):
         for i in self.piano:
             i.show()
             time.sleep(1)
-
+        tkinter.mainloop()
