@@ -1,0 +1,1 @@
+\slideshow(\slide(\title('bla',\font('Algerian 90'),\color('red'))\text('bla','bla')\image(1000,150,'/home/adam/Downloads/archer-2027137_960_720.png ')))
