@@ -1,4 +1,4 @@
-import argparse,tkinter,sys,time
+import argparse,tkinter,sys,time,os
 canv=tkinter.Canvas(width=5000,height=5000)
 canv.pack()
 class Slide:
@@ -12,7 +12,7 @@ class Slide:
         self.imageposys=[]
         self.textindex=5
         self.canv=canv
-        
+        self.titargs=[]       
     def add_text(self,txt,font='Times 20' ):
         self.text.append(txt)
         self.posys.append(self.textindex*12)
@@ -22,7 +22,7 @@ class Slide:
         
     def add_title(self,title,font='CourierNew 30',color='black'):
         self.title=Title(text=title,font=font,color=color)
-        self.titargs=self.title.create()
+        self.titargs.extend(self.title.create())
     def add_image(self,posx,posy,image):
         img=tkinter.PhotoImage(file=image)
         self.images.append(img)
@@ -70,3 +70,26 @@ class SlideShow:
             i.show()
             time.sleep(1)
         tkinter.mainloop()
+class SSShFile:
+    def __init__(self,filename):
+        if os.path.splitext(filename)[1]!='.sssh':
+            raise ValueError('File must be SSSh file ')
+        self.file=open(filename)
+    def _strippars(self,string):
+        zoz1=[]
+        zoz2=[]
+        iterator=iter(string)
+        while True:
+            a=next(iterator)
+            if a!='(':
+               zoz2.append(a)
+            else:break
+        while True:
+            a=next(iterator)
+            if a!=')':
+                zoz1.append(a)
+            else:break
+        return [''.join(zoz1),''.join(zoz2)]
+            
+    def compile(self):pass
+        
